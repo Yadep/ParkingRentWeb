@@ -6,7 +6,13 @@ namespace ParkingRentWeb.Models
 {
     public partial class ParkingRentDbContext : DbContext
     {
-        public virtual DbSet<LocationParking> LocationParking { get; set; }
+
+		public ParkingRentDbContext(DbContextOptions<ParkingRentDbContext> options)
+: base(options)
+		{
+		}
+
+		public virtual DbSet<LocationParking> LocationParking { get; set; }
         public virtual DbSet<Paking> Paking { get; set; }
         public virtual DbSet<TypeParking> TypeParking { get; set; }
         public virtual DbSet<TypeUser> TypeUser { get; set; }

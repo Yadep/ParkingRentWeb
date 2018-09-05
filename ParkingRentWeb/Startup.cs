@@ -30,6 +30,9 @@ namespace ParkingRentWeb
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+			services.AddDbContext<ParkingRentDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
@@ -48,11 +51,10 @@ namespace ParkingRentWeb
 
 			services.AddMvc();
 
-			services.AddSignalR();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider service)
 		{
 			if (env.IsDevelopment())
 			{
@@ -69,17 +71,38 @@ namespace ParkingRentWeb
 
 			app.UseAuthentication();
 
-			app.UseSignalR(routes =>
-			{
-				routes.MapHub<Chat>("chat");
-			});
-
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");
 			});
+
+			CreateUserRoles(service).Wait();
 		}
+
+		/// <summary>
+		/// Vérifie et créer les differents rôles si besoin : Directeur de mission, Admin, Adhérent
+		/// Ainsi que des utilisateur de tests
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <returns></returns>
+		public static async Task CreateUserRoles(IServiceProvider serviceProvider)
+		{
+			var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+			var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+			IdentityResult roleResult;
+			//Ajoute le role Admin
+			var role = await RoleManager.RoleExistsAsync("Utilisateur");
+			if (!role)
+			{
+				//Créer le role et l'ajoute a la BDD   
+				roleResult = await RoleManager.CreateAsync(new IdentityRole("Utilisateur"));
+			}
+
+		}
+
 	}
 }

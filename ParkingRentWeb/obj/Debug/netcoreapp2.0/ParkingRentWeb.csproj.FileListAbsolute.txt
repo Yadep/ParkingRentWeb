@@ -10,3 +10,15 @@ C:\wamp64\www\ParkingRentV2\ParkingRentWeb\ParkingRentWeb\obj\Debug\netcoreapp2.
 C:\wamp64\www\ParkingRentV2\ParkingRentWeb\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.AssemblyInfo.cs
 C:\wamp64\www\ParkingRentV2\ParkingRentWeb\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.dll
 C:\wamp64\www\ParkingRentV2\ParkingRentWeb\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.pdb
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.csprojAssemblyReference.cache
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.csproj.CoreCompileInputs.cache
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.AssemblyInfoInputs.cache
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.AssemblyInfo.cs
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.dll
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\obj\Debug\netcoreapp2.0\ParkingRentWeb.pdb
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\bin\Debug\netcoreapp2.0\ParkingRentWeb.deps.json
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\bin\Debug\netcoreapp2.0\ParkingRentWeb.runtimeconfig.json
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\bin\Debug\netcoreapp2.0\ParkingRentWeb.runtimeconfig.dev.json
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\bin\Debug\netcoreapp2.0\ParkingRentWeb.dll
+C:\wamp64\www\ParkingRent\ParkingRent\ParkingRentWeb\bin\Debug\netcoreapp2.0\ParkingRentWeb.pdb

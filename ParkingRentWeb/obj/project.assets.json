@@ -13266,11 +13266,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp64\\www\\ParkingRentV2\\ParkingRentWeb\\ParkingRentWeb\\ParkingRentWeb.csproj",
+      "projectUniqueName": "C:\\wamp64\\www\\ParkingRent\\ParkingRent\\ParkingRentWeb\\ParkingRentWeb.csproj",
       "projectName": "ParkingRentWeb",
-      "projectPath": "C:\\wamp64\\www\\ParkingRentV2\\ParkingRentWeb\\ParkingRentWeb\\ParkingRentWeb.csproj",
+      "projectPath": "C:\\wamp64\\www\\ParkingRent\\ParkingRent\\ParkingRentWeb\\ParkingRentWeb.csproj",
       "packagesPath": "C:\\Users\\Yadeo\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp64\\www\\ParkingRentV2\\ParkingRentWeb\\ParkingRentWeb\\obj\\",
+      "outputPath": "C:\\wamp64\\www\\ParkingRent\\ParkingRent\\ParkingRentWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

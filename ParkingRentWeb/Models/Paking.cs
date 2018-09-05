@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParkingRentWeb.Models
 {
@@ -7,11 +8,17 @@ namespace ParkingRentWeb.Models
     {
         public int Id { get; set; }
         public string IdUser { get; set; }
-        public int IdTypeParking { get; set; }
-        public string Adresse { get; set; }
-        public string Ville { get; set; }
-        public string Cp { get; set; }
-        public decimal PrixJournalier { get; set; }
-        public string Description { get; set; }
+		[Display(Name = "Type de parking")]
+		public int IdTypeParking { get; set; }
+		[Display(Name = "Adresse")]
+		public string Adresse { get; set; }
+		[Display(Name = "Ville")]
+		public string Ville { get; set; }
+		[Display(Name = "Code postal")]
+		public string Cp { get; set; }
+		[Display(Name = "Prix journalier")]
+		public decimal PrixJournalier { get; set; }
+		[Display(Name = "Description du parking")]
+		public string Description { get; set; }
     }
 }
