@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ParkingRentWeb.Models.ParkingViewModel.PointsMapViewModel>
+@{
 	ViewData["Title"] = "Carte";
 }
 <h2>@ViewData["Title"]</h2>
@@ -15,9 +16,15 @@
 			id: 'mapbox.streets',
 			accessToken: 'pk.eyJ1Ijoibmljb2xhczMxNyIsImEiOiJjaXplOW4xMHYwMDBuMzNvenJjZGRqeHlvIn0.mSp_LwjBYSJFH9JBqqhlaw',
 		}).addTo(mymap);
-		this.places.forEach((place) => {
-			L.marker([place.latitude, place.longitude]).on('click', this.onMarkerClick).addTo(mymap);
-		});
+		//this.places.forEach((place) => {
+		//	L.marker([place.latitude, place.longitude]).on('click', this.onMarkerClick).addTo(mymap);
+		//});
+		@foreach(var point in Model)
+		{
+			<text>
+				L.marker([@point.latitude, @point.longitude]).on('click', this.onMarkerClick).addTo(mymap);
+			</text>
+		}
 		mymap.on('click', this.onMapClick);
 	});
 </script>

@@ -31,7 +31,8 @@ namespace ParkingRentWeb
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddDbContext<ParkingRentDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+				
+			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<ApplicationDbContext>()
