@@ -22,7 +22,7 @@
 		@foreach(var point in Model)
 		{
 			<text>
-				L.marker([@point.latitude, @point.longitude]).on('click', this.onMarkerClick).addTo(mymap);
+		L.marker([@point.latitude, @point.longitude]).on('click', this.onMarkerClick).addTo(mymap).bindPopup('Description : @point.description <br/> Prix : @point.prix € par jour').openPopup();
 			</text>
 		}
 		mymap.on('click', this.onMapClick);

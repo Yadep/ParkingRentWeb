@@ -38,11 +38,12 @@ namespace ParkingRentWeb.Controllers
 			var listPoint = new List<PointsMapViewModel>();
 			foreach (var point in points)
 			{
-				string requestUri = string.Format("http://maps.google.com/maps/api/geocode/xml?address=" + point.Adresse + " " + point.Cp + " " + point.Ville + "&sensor=false");
+				string requestUri = string.Format("http://maps.google.com/maps/api/geocode/xml?address=" + point.Adresse + "+" + point.Cp + "+" + point.Ville + "&sensor=false");
 
 				WebRequest request = WebRequest.Create(requestUri);
 				WebResponse response = request.GetResponse();
 				XDocument xdoc = XDocument.Load(response.GetResponseStream());
+				System.Threading.Thread.Sleep(500);
 				XElement result = xdoc.Element("GeocodeResponse").Element("result");
 				XElement locationElement = result.Element("geometry").Element("location");
 				XElement lat = locationElement.Element("lat");
