@@ -79,7 +79,7 @@ namespace ParkingRentWeb.Models
 
                 entity.Property(e => e.Libelle)
                     .IsRequired()
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("nchar(50)");
             });
 
             modelBuilder.Entity<TypeUser>(entity =>

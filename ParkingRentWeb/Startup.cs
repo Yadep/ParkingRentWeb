@@ -78,8 +78,9 @@ namespace ParkingRentWeb
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");
 			});
-
+			var parkingRentContext = service.CreateScope().ServiceProvider.GetService<ParkingRentDbContext>();
 			CreateUserRoles(service).Wait();
+			SeedDb(parkingRentContext).Wait();
 		}
 
 		/// <summary>
@@ -105,5 +106,40 @@ namespace ParkingRentWeb
 
 		}
 
+		public static async Task SeedDb(ParkingRentDbContext parkingRentDbContext)
+		{
+			if(!parkingRentDbContext.TypeParking.Any())
+			{
+				var typeParking = new List<TypeParking>
+				{
+					new TypeParking {Id = 1 , Libelle = "Box"},
+					new TypeParking {Id = 2,  Libelle = "Garage"},
+					new TypeParking {Id = 3,  Libelle = "Place de parking"},
+				};
+				parkingRentDbContext.AddRange(typeParking);
+				parkingRentDbContext.SaveChanges();
+			}
+			if(!parkingRentDbContext.TypeUser.Any())
+			{
+				var typeUser = new List<TypeUser>
+				{
+					new TypeUser {Id = 1,  Libelle = "Particulier"},
+					new TypeUser {Id = 2,  Libelle = "Professionnel"}
+				};
+				parkingRentDbContext.AddRange(typeUser);
+				parkingRentDbContext.SaveChanges();
+			}
+			if (!parkingRentDbContext.TypeUser.Any())
+			{
+				var typeVehicule = new List<TypeVehicule>
+				{
+					new TypeVehicule {Id = 1, Libelle = "Camion"},
+					new TypeVehicule {Id = 2, Libelle = "Voiture"},
+					new TypeVehicule {Id = 3, Libelle = "Voiture sans permis"}
+				};
+				parkingRentDbContext.AddRange(typeVehicule);
+				parkingRentDbContext.SaveChanges();
+			}
+		}
 	}
 }

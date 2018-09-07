@@ -38,12 +38,14 @@ namespace ParkingRentWeb.Controllers
 			var listPoint = new List<PointsMapViewModel>();
 			foreach (var point in points)
 			{
+
 				string requestUri = string.Format("http://maps.google.com/maps/api/geocode/xml?address=" + point.Adresse + "+" + point.Cp + "+" + point.Ville + "&sensor=false");
 
 				WebRequest request = WebRequest.Create(requestUri);
+				System.Threading.Thread.Sleep(1000);
 				WebResponse response = request.GetResponse();
+				System.Threading.Thread.Sleep(1000);
 				XDocument xdoc = XDocument.Load(response.GetResponseStream());
-				System.Threading.Thread.Sleep(500);
 				XElement result = xdoc.Element("GeocodeResponse").Element("result");
 				XElement locationElement = result.Element("geometry").Element("location");
 				XElement lat = locationElement.Element("lat");
@@ -63,7 +65,8 @@ namespace ParkingRentWeb.Controllers
 		// GET: Parkings
 		public async Task<IActionResult> Index()
 		{
-			return View(await _context.Paking.ToListAsync());
+			var userId = _userManager.GetUserId(User);
+			return View(await _context.Paking.Where(b => b.IdUser == userId).ToListAsync());
 		}
 
 		// GET: Parkings/Details/5
@@ -82,6 +85,65 @@ namespace ParkingRentWeb.Controllers
 			}
 
 			return View(paking);
+		}
+
+		// GET: Parkings/Rent/5
+		public async Task<IActionResult> Rent(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var paking = await _context.Paking
+				.SingleOrDefaultAsync(m => m.Id == id);
+			if (paking == null)
+			{
+				return NotFound();
+			}
+
+			return View("RentParking", paking);
+		}
+
+
+		public IActionResult RentParking(int? id)
+		{
+			var userId = _userManager.GetUserId(User);
+			var date = DateTime.Now;
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var paking = _context.Paking
+				.SingleOrDefault(m => m.Id == id);
+
+			if (paking == null)
+			{
+				return NotFound();
+			}
+			if(canRent(paking,date,userId))
+			{
+				var locationParking = new LocationParking();
+
+				locationParking.IdParking = paking.Id;
+				locationParking.IdUser = userId;
+				locationParking.JourLocation = date;
+				_context.LocationParking.Add(locationParking);
+			}
+
+			return View("RentParking", paking);
+		}
+
+		public bool canRent(Paking paking, DateTime date, string user)
+		{
+			var result = true;
+			var location = _context.LocationParking.Where(b => b.IdParking == paking.Id && b.JourLocation == date && paking.IdUser != user).FirstOrDefault();
+			if(location == null)
+			{
+				result = false;
+			}
+			return result;
 		}
 
 		// GET: Parkings/Create
@@ -195,5 +257,6 @@ namespace ParkingRentWeb.Controllers
 		{
 			return _context.Paking.Any(e => e.Id == id);
 		}
+
 	}
 }
